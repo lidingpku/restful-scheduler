@@ -38,7 +38,7 @@ def homepage():
         datetime.now().isoformat().replace(":","-")
     )
 
-filename_log = "log.txt"
+filename_log = "/tmp/log.txt"
 
 @get('/scheduler/add')
 def add():
@@ -90,5 +90,5 @@ if __name__ == '__main__':
     s.close()
     print ipaddress
 
-    run(host=ipaddress, port=8080)
-    #run(host='localhost', port=8080)
+    #run(host=ipaddress, port=8080)
+    run(host='localhost', port=8080)
