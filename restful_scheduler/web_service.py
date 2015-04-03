@@ -6,7 +6,7 @@ from rq_scheduler import Scheduler
 from rq.queue import FailedQueue
 
 from datetime import timedelta
-
+import logging
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
@@ -54,7 +54,7 @@ def add():
     job = scheduler.enqueue_in(timedelta(minutes=minutes_delta), request_url, **{"url":url})
 
     msg = u'[{}][scheduler/add] {} scheduled after {} minutes. job id {}\n'.format(datetime.now().isoformat()[:19], url, minutes_delta, job.id)
-    print msg
+    logging.info(msg)
 
     with codecs.open(filename_log, "a", encoding="utf-8") as f:
         f.write(msg)
@@ -70,7 +70,7 @@ def list_todo():
 
     list_of_job_instances = scheduler.get_jobs()
     msg = "\n".join([ str(job) for job in list_of_job_instances])
-    print msg
+    logging.info(msg)
 
     return msg
 
@@ -88,7 +88,8 @@ if __name__ == '__main__':
     s.connect(("baidu.com",80))
     ipaddress = s.getsockname()[0]
     s.close()
-    print ipaddress
+
+    logging.info(ipaddress)
 
     #run(host=ipaddress, port=8080)
     run(host='localhost', port=8080)
