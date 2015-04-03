@@ -7,6 +7,12 @@ from rq.queue import FailedQueue
 
 from datetime import timedelta
 
+import sys
+import os
+sys.path.append(os.path.dirname(__file__))
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 from restful_scheduler.action import request_url
 
 @get('/scheduler') # or @route('/login')
