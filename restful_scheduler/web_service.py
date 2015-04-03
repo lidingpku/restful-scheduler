@@ -56,6 +56,7 @@ def add():
     msg = u'[{}][scheduler/add] {} scheduled after {} minutes. job id {}\n'.format(datetime.now().isoformat()[:19], url, minutes_delta, job.id)
     logging.info(msg)
 
+    os.chmod(filename_log, 777)
     with codecs.open(filename_log, "a", encoding="utf-8") as f:
         f.write(msg)
 

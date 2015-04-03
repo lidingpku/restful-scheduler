@@ -6,6 +6,7 @@ def request_url(url):
     import logging
 
     r = requests.get(url)
+    print url
 
     if r:
         msg = u'[{}][request_url] {} status code {}, length {}\n'.format(datetime.now().isoformat()[:19], url, r.status_code, len(r.content))
@@ -13,6 +14,7 @@ def request_url(url):
         msg = u'[{}][request_url] {} status code {}\n'.format(datetime.now().isoformat()[:19], url, r.status_code)
 
     logging.info(msg)
+    print msg
 
     filename_log = "/tmp/restful_scheduler.log"
     with codecs.open(filename_log, "a", encoding="utf-8") as f:
