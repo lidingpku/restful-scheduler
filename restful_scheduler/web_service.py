@@ -22,7 +22,10 @@ def homepage():
 
     return '''
         <h2>restful scheduler </h2> version:{}
-        <p><a href="scheduler/list_todo">list todo</a></p>
+        <p>
+           <a href="scheduler/list_todo">list todo task</a>,
+           <a href="scheduler/log?limit=10">list last n log</a>
+        </p>
         <form action="/scheduler/add" method="get">
             url: <input name="url" type="text" value="http://vbuluo.com/req-{}" size=80 />
             <br/>
@@ -80,4 +83,12 @@ def enqueue():
         return "".join(f.readlines()[limit:])
 
 if __name__ == '__main__':
-    run(host='localhost', port=8080)
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("baidu.com",80))
+    ipaddress = s.getsockname()[0]
+    s.close()
+    print ipaddress
+
+    run(host=ipaddress, port=8080)
+    #run(host='localhost', port=8080)
