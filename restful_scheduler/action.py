@@ -14,6 +14,6 @@ def request_url(url):
 
     logging.info(msg)
 
-    filename_log = "/tmp/log.txt"
+    filename_log = "/tmp/restful_scheduler.log"
     with codecs.open(filename_log, "a", encoding="utf-8") as f:
         f.write(msg)
